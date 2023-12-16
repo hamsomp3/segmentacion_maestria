@@ -1,6 +1,10 @@
 # segmentacion_maestria
 
 
+Name of the repository: segmentacion_maestria
+Link to the repository: [segmentacion_maestria](https://github.com/hamsomp3/segmentacion_maestria)
+
+
 For window users, please install the following packages:
 
 [Chocolatey](https://chocolatey.org/install)
