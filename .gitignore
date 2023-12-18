@@ -2,10 +2,12 @@
 venv/
 .env
 docs/
-img/mp4_videos/.
-img/gif_images/.
-img/png_images/.
+img/mp4_videos/
+img/gif_images/
+img/png_images/
 
 *.mp4
-*.gif
 *.png
+*.gif
+img/gif_images/.
+img/mp4_videos/*
