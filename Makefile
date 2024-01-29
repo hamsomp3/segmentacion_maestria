@@ -21,8 +21,12 @@ install-windows:
 	if not exist ".venv" python -m venv --copies .venv
 	.venv/Scripts/python.exe -m pip install -qU pip
 	.venv/Scripts/pip install -r requirements.txt
+	.venv/Scripts/pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 local-setup-windows: install-windows
 
 activate-windows:
 	@echo Run 'powershell .\.venv\Scripts\Activate.ps1' to activate the virtual environment
+
+cuda:
+	nvcc --version
