@@ -10,6 +10,7 @@ Before diving into JanGPT, ensure you have the following prerequisites installed
 
 - [Python 3.10](https://www.python.org/downloads/release/python-3100/) The core programming language used.
 - [Git](https://git-scm.com/downloads) Essential for cloning the repository.
+- [Visual Studio Code](https://code.visualstudio.com/)
 
 # Getting Started
 

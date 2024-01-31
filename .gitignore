@@ -5,7 +5,7 @@ docs/
 img/mp4_videos/
 img/gif_images/
 img/png_images/
-
+__pycache__/
 *.mp4
 *.png
 *.gif
