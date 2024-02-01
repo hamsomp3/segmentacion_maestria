@@ -1,7 +1,6 @@
 .venv/
 venv/
 .env
-docs/
 img/mp4_videos/
 img/gif_images/
 img/png_images/
