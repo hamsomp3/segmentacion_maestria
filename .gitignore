@@ -10,3 +10,5 @@ __pycache__/
 *.gif
 img/gif_images/.
 img/mp4_videos/*
+my_checkpoint.pth.tar
+__pycache__/unet_model.cpython-311.pyc

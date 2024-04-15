@@ -1,8 +1,7 @@
-import pathlib as pl
-import numpy as np
-from PIL import Image
-from torch.utils.data import Dataset
 import os
+import numpy as np
+from torch.utils.data import Dataset
+import torch
 
 
 class organ_segmentation_dataset(Dataset):
@@ -10,24 +9,35 @@ class organ_segmentation_dataset(Dataset):
         self.image_dir = image_dir
         self.mask_dir = mask_dir
         self.transform = transform
-        self.images = os.listdir(image_dir)
+        self.images = sorted(os.listdir(image_dir))
 
     def __len__(self):
         return len(self.images)
     
     def __getitem__(self, index):
+        img_name = self.images[index]
         img_path = os.path.join(self.image_dir, self.images[index])
         mask_path = os.path.join(self.mask_dir, self.images[index])
-        # the images and the mask already have the same name so we can just use the same index
-        # the images and the mask are in the same format npy so we can simply use np.load, check this later.
-        #image = np.load(img_path)
-        #mask = np.load(mask_path)
-        image = np.array(Image.open(img_path).convert("RGB"))
-        mask = np.array(Image.open(mask_path).convert("L"), dtype=np.float32)
+        image = np.load(img_path)
+        mask = np.load(mask_path)
 
-        if self.transform is not None:
-            augmentations = self.transform(image=image, mask=mask)
-            image = augmentations["image"]
-            mask = augmentations["mask"]
+        # Normaliza la imagen a [0, 1] si no ya está normalizada
+        image_max = np.amax(image)
+        if image_max > 1.0:
+            image = image / image_max
 
-        return image, mask 
+        mask = mask.astype(np.int64)  # Las máscaras deben ser de tipo long para el cálculo de pérdida
+
+        if self.transform:
+            augmented = self.transform(image=image, mask=mask)
+            image = augmented['image']
+            mask = augmented['mask']
+
+        return image, mask
+
+# Example of a simple transform function
+def transform1(image, mask):
+    # Convert numpy arrays to PyTorch tensors
+    image = torch.from_numpy(image).unsqueeze(0)  # Add channel dimension
+    mask = torch.from_numpy(mask)
+    return image, mask
