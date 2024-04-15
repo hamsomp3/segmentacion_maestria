@@ -4,7 +4,7 @@ from dataset_unet import organ_segmentation_dataset
 from torch.utils.data import DataLoader
 num_classes = 6
 
-def save_checkpoint(state, filename="my_checkpoint.pth.tar"):
+def save_checkpoint(state, filename="my_checkpoint.pth.tar"): #revisar esta parte porque ahora se tiene segnet
     print("=> Saving checkpoint")
     torch.save(state, filename)
 
