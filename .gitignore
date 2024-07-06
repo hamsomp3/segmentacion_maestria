@@ -6,7 +6,6 @@ img/gif_images/
 img/png_images/
 __pycache__/
 *.mp4
-*.png
 *.gif
 img/gif_images/.
 img/mp4_videos/*
